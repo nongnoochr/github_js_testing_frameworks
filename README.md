@@ -1,4 +1,7 @@
-# Analyzing a usage of JS Testing Frameworks
+# Analysis of a Usage of Popular JS Testing Frameworks
+
+## ****** This is work in progress (2019-06-30) ******
+
 
 This project aims to analyze a popularity/trend of a usage of JS Testing Frameworks/Libraries under consideration listed below:
 * Mocha
@@ -6,7 +9,6 @@ This project aims to analyze a popularity/trend of a usage of JS Testing Framewo
 * Jasmine
 * QUnit
 
-## ****** This is work in progress (2019-06-30) ******
 
 ### Table of Contents
 
