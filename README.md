@@ -1,5 +1,10 @@
-# Analyzing a usage of JS Testing Frameworks in GitHub
+# Analyzing a usage of JS Testing Frameworks
 
+This project aims to analyze a popularity/trend of a usage of JS Testing Frameworks/Libraries under consideration listed below:
+* Mocha
+* Jest
+* Jasmine
+* QUnit
 
 ## ****** This is work in progress (2019-06-30) ******
 
@@ -14,7 +19,8 @@
 See more information about Data Wrangling process [here](./data_wrangling/README.md)
 
 ## Data Analysis<a name="data_analysis"></a>
-* Analyze package.json data. See [EDA_package_deps.ipynb](./EDA_package_deps.ipynb)
+* Analyze package.json data of GitHub repos that list one of the interested JS Testing Framework. 
+  * See [EDA_package_deps.ipynb](./EDA_package_deps.ipynb)
 
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
