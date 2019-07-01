@@ -1,6 +1,21 @@
 # Analyzing a usage of JS Testing Frameworks in GitHub
 
+
+## ****** This is work in progress (2019-06-30) ******
+
+### Table of Contents
+
+1. [Data Wrangling](#data_wrangling)
+2. [Data Analysis](#data_analysis)
+3. [Licensing, Authors, and Acknowledgements](#licensing)
+
+## Data Wrangling<a name="data_wrangling"></a>
+
 See more information about Data Wrangling process [here](./data_wrangling/README.md)
+
+## Data Analysis<a name="data_analysis"></a>
+* Analyze package.json data. See [EDA_package_deps.ipynb](./EDA_package_deps.ipynb)
+
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 
