@@ -1,6 +1,7 @@
 # Internal files
 .DS_Store
 data/github_package_deps_combined_June_2019.csv
+data_wrangling/temp*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
