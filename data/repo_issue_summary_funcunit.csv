@@ -1,0 +1,1202 @@
+issue_id,title,contents,authorLogin,authorAssociation,createdAt,closed,closedAt,closedDuration_days,milestone,participants_count,comments_count,firstCommentCreatedAt,firstCommentDuration_days,firstCommentAuthor,firstCommentAuthorAssociation,num_unique_comment_author_MEMBER,num_unique_comment_author_CONTRIBUTOR,num_unique_comment_author_COLLABORATOR,num_unique_comment_author_NONE,labels,label_documentation,label_enhancement,label_p1,label_website,label_p3,label_question,label_design,label_cleanup,label_p4,label_p0,label_help wanted,label_regression,label_bug,label_developer relations,label_p2
+1,"Syn removes href of clicked link, even if it's just an id reference.","Syn.click() removes the href attribute of ""a"" elements and replaces it with ""javascript://"" (see  http://github.com/pinhook/funcunit/blob/master/synthetic/mouse.js#L162). This causes problems for any event handler that looks at the href attribute of a click event's target element. For instance, I have a tab view that links tabs with the corresponding content based on the tab's href, and Syn is unable to switch from one tab to the next because it interferes with this attribute.
+I'm not sure I understand the purpose of this code, but should the replacement occur unconditionally, or should it perhaps leave id reference hrefs alone?",,NONE,2010-07-30 19:47:54+00:00,True,2011-04-22 20:17:52+00:00,266.02,,3,5,2010-08-30 21:38:09+00:00,31.08,,NONE,0,0,0,3,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+2,Syn Click in IE8,"See this example, and compare IE with Firefox/Chrome/etc.: http://jsfiddle.net/BCfNV/8/
+The Syn click callback is fired, but the events are not.
+Got any ideas?",arian,NONE,2010-08-30 20:49:08+00:00,True,2010-10-07 15:07:01+00:00,37.76,,3,10,2010-08-30 21:14:53+00:00,0.02,,NONE,0,0,0,3,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+4,simulated click on anchor tag - wrong behavior,"First I'd like to say thanks for releasing the Syn.js library. Actually I have been working on something similar myself but have only achieved a fraction of the Syn.js.
+I have noticed a bug when simulating a click on an anchor tag tag that has both an href attribute and an event handler listening to the onclick attribute, which prevents the default behaviour (e.g. follwing the link) and does some JavaScript magic instead.
+[a id=""buggy"" href=""http://www.example.com/images/001.png""]Open Image in Lightbox[/a]
+document.getElementById(""buggy"").addEvent(""onclick"", function() {
+//open image in lightbox
+event.preventDefault();
+});
+For a real world example, see:
+http://www.digitalia.be/software/slimbox2
+A synthetic Syn.js-Click will load the href in the current window, which is wrong. Unfortunately, there seems to be no way of knowing, that there is an event handler registered for the onclick event, unless it has been assigned using the oldschool onclick attribute.
+What are your thoughts on this?
+Best,
+Chris",Christian2M,NONE,2010-10-07 14:26:55+00:00,True,2011-04-22 20:23:28+00:00,197.25,,2,2,2010-10-07 15:06:38+00:00,0.03,,NONE,0,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+5,Frames that don't exist yet.,FuncUnit needs to handle if a frame doesn't exist yet.,,NONE,2010-11-12 16:09:47+00:00,True,2011-10-05 05:20:19+00:00,326.55,,2,1,2011-10-04 21:17:33+00:00,326.21,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+7,Type empty value cause exception,"If I do,
+S('#Email').type('');
+It would fail with:
+options is undefined
+Line 9688, funcunit.js",alexbeletsky,NONE,2010-12-11 14:35:32+00:00,True,2010-12-11 19:11:17+00:00,0.19,,2,2,2010-12-11 18:52:45+00:00,0.18,,NONE,0,0,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+8,Simulated click on Select.Option doesn't behaves right,"When I simulate a selection it keeps the list open and it seems it doesnt fire a change event.
+I doe it like that:
+S('#myselect option[value=1]').click()",cburgdorf,NONE,2011-01-17 10:46:14+00:00,True,2011-01-17 22:47:41+00:00,0.5,,2,4,2011-01-17 10:54:56+00:00,0.01,cburgdorf,NONE,0,0,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+9,Exists checks for size (might be not what someone expects),I noticed that exists() checks for size bigger than 0. However I would expect that it just checks if a selector returns something or not.,cburgdorf,NONE,2011-01-17 12:37:27+00:00,True,2011-01-17 22:46:14+00:00,0.42,,2,2,2011-01-17 14:46:14+00:00,0.09,,NONE,0,0,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+11,Typo on doc page http://funcunit.com/#&who=FuncUnit,"In the example where it says:
+     setup: function() {
+    // opens the page you want to test
+    $.open(""app.html"");
+  }
+
+It should say:
+  setup: function() {
+    // opens the page you want to test
+    S.open(""app.html"");
+  }",dcoletta,NONE,2011-02-08 15:49:04+00:00,True,2011-04-22 20:19:18+00:00,73.19,,2,1,2011-04-22 20:19:18+00:00,73.19,,NONE,0,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+12,Integrate with JSTestDriver,"Is FuncUnit compatible with http://code.google.com/p/js-test-driver/? I looked through http://javascriptmvc.com/docs/FuncUnit.html#&who=FuncUnit but couldn't see any mention.
+Thanks for your time.",JamieMason,NONE,2011-05-12 14:07:54+00:00,True,2012-11-09 06:37:27+00:00,546.69,JMVC 3.3,5,10,2011-05-12 20:35:05+00:00,0.27,lastzero,CONTRIBUTOR,2,1,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+14,Button click on non-existent button causes selenium to freeze test,"This is a show stopper at the moment, because it causes hudson build scripts to freeze and never finish
+Issue reported here:
+http://forum.javascriptmvc.com/topic/timeout-differences-for-funcunit-browser-and-funcunit-selenium#32525000000520013
+Basically, if I have a test where I attempt to click on a button that doesn't exist the test simply freezes
+Using Default Settings
+BROWSER *firefox =====
+MODULE setup
+--Selenium negative test for button that does not exist--
+steal.js INFO: Opening //
+steal.js INFO: Clicking .button-doesnot-exist
+// Just stops here and doesn't timeout
+test(""Selenium negative test for button that does not exist"",function(){
+S('.button-doesnot-exist').click(function(){
+//never gets here
+})
+})",jnisenson,NONE,2011-06-04 01:01:48+00:00,True,2011-09-14 06:40:35+00:00,102.24,,2,1,2011-09-14 06:40:35+00:00,102.24,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+18,Restore async methods within callbacks,"Make it possible to add an async method (action or wait) inside a callback.
+Async methods inside a callback should be added to the start of the queue.
+If the callback ends and there are no actions or waits, it should wipe out anything added to the queue.",moschel,MEMBER,2011-10-05 19:49:36+00:00,True,2011-10-06 02:54:02+00:00,0.29,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+19,noConflict,Set $.noConflict in extreme mode so any other jQuery in the page won't be affected.,moschel,MEMBER,2011-10-05 19:50:21+00:00,True,2011-10-05 23:49:34+00:00,0.17,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+20,Remove jquerymx dependency,Just include funcunit's jquery.  Check if there are any other jquerymx dependencies and remove them.,moschel,MEMBER,2011-10-05 19:50:48+00:00,True,2011-10-05 21:35:22+00:00,0.07,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+21,Add S.if,"S.if(checker1, fn1, checker2, fn2, errorFn)
+Useful for running conditional code in funcunit.",moschel,MEMBER,2011-10-05 19:51:35+00:00,True,2011-10-06 03:24:51+00:00,0.31,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+22,"Don't overwrite confirm, etc","Detect if the app page already overwrite confirm, prompt, or alert.  Only overwrite those methods in FuncUnit if that isn't the case.",moschel,MEMBER,2011-10-05 19:52:40+00:00,True,2011-10-05 20:54:13+00:00,0.04,,2,1,2011-10-05 20:54:13+00:00,0.04,amcdnl,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+23,Fix traverser -> waits,"S("":contains('Holler')"")
+.closest(""#foo"")
+.find("".combo"")
+.hasClass(""combo"", false)
+This doesn't work as expected.  Currently, waits are re-running their queries with this.selector every time the check is made.
+S(this.selector).  But, traversers aren't modifying the selector.
+What needs to happen is we store the last traverser method AND the previous collection, and rerun the traverser on the previous collection.
+OR
+we can simply not re-run queries for anything except .size waits (exists, missing, etc) and not support the case where you call a traverser followed by a .size wait",moschel,MEMBER,2011-10-05 20:04:43+00:00,True,2011-10-05 21:06:08+00:00,0.04,,1,1,2011-10-05 20:33:07+00:00,0.02,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+24,Better error messaging when pop-ups get blocked,"We need to generate more helpful error messages when pop-up windows are blocked by the browser. Some Funcunit tests are failing with an obscure error (Uncaught TypeError: Object [object HTMLDocument] has no method 'getAttributeNode', http://jmvc.local/funcunit/syn/synthetic.js:332) when an attempt is made to focus an invisible document, because it was a blocked pop-up.",polgfred,CONTRIBUTOR,2011-12-16 02:33:49+00:00,True,2012-11-09 06:38:10+00:00,329.17,,2,3,2011-12-16 03:09:29+00:00,0.02,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+25,No output message from envjs when installing JMVC from Git,"Hi,
+I've just installed JavascriptMVC from Git, following the tutorial : http://javascriptmvc.com/docs.html#!developwithgit
+I created a new cookbook app : ./js jquery/generate/app cookbook
+Then I ran the following command :
+$ ./js funcunit/run envjs cookbook/qunit.html
+Opening file:///tmp/tmp_project/static/cookbook/qunit.html
+starting steal.browser.envjs
+$
+There is no output message from envjs.
+I tried with the Zip file - http://javascriptmvc.com/builder.html - the output is not the same :
+$ ./js funcunit/run envjs cookbook/qunit.html
+Using Default Settings
+starting steal.browser.envjs
+cookbook
+cookbook testing works
+[x] an assert is run
+Time: 20 seconds, Memory: 55.13 MB
+OK (1 tests, 1 assertions)
+$
+Thank you for your support
+Jon",jon301,NONE,2012-01-12 10:05:15+00:00,True,2012-01-13 18:14:01+00:00,1.34,,2,1,2012-01-13 18:14:01+00:00,1.34,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+26,selenium does not end/exit well when has failure,It's fine when all tests are successful. You may replicate it by forcing a failure on your provided sample funcunit test. Thanks!,jacquelynjg,NONE,2012-01-20 10:35:09+00:00,True,2012-02-02 07:11:02+00:00,12.86,,2,4,2012-01-23 05:24:56+00:00,2.78,jacquelynjg,NONE,1,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+27,Need a way to wait for animations to finish,"When dealing with applications with animations, it would be useful to have a wait that waits for all current animations to be finished before proceeding with the rest of the test.
+Right now, the instance of jQuery that is running the test (S) and the version running in the app ($) have separate animation queues. This means S(':animated') will always be empty and so S(':animated').missing() will return immediately even though the application still has elements in the animation queue.",ccummings,CONTRIBUTOR,2012-01-25 22:20:02+00:00,True,2012-03-22 06:02:47+00:00,56.32,,3,2,2012-01-25 22:22:01+00:00,0.0,ralphholzmann,CONTRIBUTOR,1,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+28,Prompt does not trigger,"I run funcunit in FF 9.0.1 and Chrome 16. It opens a new window for running the tests just fine.
+In that window, if I type ""prompt('Question')"" in the javascript console it does nothing.
+(I ended up there because I was trying to test a script with a prompt within)",jerkan,NONE,2012-01-28 18:02:55+00:00,True,2012-01-30 06:51:33+00:00,1.53,,2,4,2012-01-28 21:48:08+00:00,0.16,justinbmeyer,MEMBER,1,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+29,Clicking multiple select boxes crashes Chrome,"If you use .click() to change the option of a select box in Chrome, the options will remain visible until you manually trigger a blur. The options remain visible through S.open calls.
+If you use .click() to change the option of multiple select boxes, Chrome will crash. I've created a test in my own fork of FuncUnit that consistently shows this behavior.
+I created a similar test in syn, but clicking multiple select boxes worked in all browsers. It's possible this issue manifests itself in FuncUnit because we are operating on a window other than our own?
+FuncUnit Test: https://github.com/ccummings/funcunit/commit/6885d07101c7a05c812b4580527f512bf85ed0fa
+Syn Test: https://github.com/ccummings/syn/commit/8a09ef267696465250c57a2c3ee12ca79e32c9a4",ccummings,CONTRIBUTOR,2012-03-02 23:06:40+00:00,True,2012-11-14 02:17:42+00:00,256.13,,3,3,2012-03-02 23:18:54+00:00,0.01,justinbmeyer,MEMBER,2,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+30,qunit is updated to 1.4 and provides more informative fail information,"Are you going to updated funcunit to display the same fail information?
+For example:
+Expected: 'hello world'
+Result: 'hello donkey'
+Dif: 'hello'
+Source: ...",inspiraller,NONE,2012-03-09 15:46:53+00:00,True,2012-11-14 03:28:47+00:00,249.49,,4,9,2012-03-09 23:47:14+00:00,0.33,justinbmeyer,MEMBER,2,0,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+31,Can't get phantomjs testing to fail,"There seems to be a problem with the -e flag when trying to do funcunit tests on phantomjs.
+Steps to reproduce:
+
+generate an app
+change the APPNAME/test/funcunit/APPNAME_test.js to test equals(1, 0).
+run ./js -e funcunit/open/phantomjs APPNAME/funcunit.html
+watch the test fail
+create this small bash-script to test the exit status
+
+#!/bin/bash
+./js -e funcunit/open/phantomjs rtorrent/funcunit.html
+echo ""Exit status"" $?
+Expected output
+...
+FAILURES!
+...
+Exit status SOMETHING_NOT_ZERO
+
+Actual output
+...
+FAILURES!
+...
+Exit status 0",ansjob,NONE,2012-05-02 16:15:26+00:00,True,2012-11-12 15:55:50+00:00,193.99,,2,1,2012-11-12 15:55:50+00:00,193.99,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+32,funcunit build.js script broken,"The standalone build script for funcunit is broken and has been for quite some time. See http://forum.javascriptmvc.com/topic/right-stand-alone-version-of-funcunit.
+It appears that this script was deleted entirely in commit 45f5373, but there is no replacement, the README still references it, and it's still in the latest production download.",csosborn,NONE,2012-05-09 14:26:50+00:00,True,2013-11-01 18:58:30+00:00,541.19,,4,5,2012-05-09 16:01:23+00:00,0.07,moschel,MEMBER,1,1,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+33,change handler on controller sub-element not being triggered in tests,"It appears that if you have a change handler defined for an element in your controller, that handler will be called when run directly, but will not be called when run through Funcunit.
+See gist (git://gist.github.com/2938064.git) with altered ""recipe"" example that manifests the bug.",edhille,NONE,2012-06-15 18:38:43+00:00,True,2012-11-14 02:13:40+00:00,151.32,,2,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+35,Clipboard emulation,"Possibility for FuncUnit/Syn to emulate clipboard functionality (as mentioned in this thread).
+So when typing ([ctrl]c[ctrl-up] or ([ctrl]x[ctrl-up] get the current selection (when cutting remove it) and store it in a dummy clipboard. When ([ctrl]c[ctrl-up] is being typed insert is as the value in the element that currently has the focus.",daffl,CONTRIBUTOR,2012-10-08 23:38:04+00:00,True,2012-11-12 06:47:46+00:00,34.3,,2,1,2012-10-09 00:10:03+00:00,0.02,daffl,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+36,offset/position can't execute callback after success,"hi,
+i'm using javascriptmvc-3.2.4 to create test for my app.
+this is my code:
+S(""#main li:nth-child(2)"").offset({top:0,left:-755},function(){
+alert('!');
+ok(S(""#main li:nth-child(2)"").offset().left<0);
+ok(S(""#main li:nth-child(3)"").offset().left<755);
+equal(S(""#myTab_btns li:nth-child(2)"").hasClass('hot'),false);
+equal(S(""#myTab_btns li:nth-child(3)"").hasClass('hot'),true);
+});
+the callback func doesn't work. i test other waits func, they work fine.
+does my writing is wrong, or it's a bug?",,NONE,2012-10-25 06:08:11+00:00,True,2012-11-13 23:59:18+00:00,19.74,,1,2,2012-11-09 06:35:33+00:00,15.02,moschel,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+37,syn submodule refers to invalid SHA,"It appears that the syn submodule is pointing to https://github.com/bitovi/syn/tree/0fea0bb91c7843287aa55c40578ab2a6f3bbcf40, which isn't checked in.
+This causes recursion, checkouts, and deployments to fail :(",onyxrev,NONE,2012-12-18 23:02:24+00:00,True,2012-12-19 01:58:04+00:00,0.12,,2,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+38,safari with selenium broken,"This fixes it in open.js
+           if(FuncUnit.win && FuncUnit.win.document == null){
+                    setTimeout(arguments.callee, 500)
+                    return;
+                }
+         }catch(e){",justinbmeyer,MEMBER,2012-12-21 01:03:25+00:00,True,2013-02-07 02:24:04+00:00,48.06,,2,2,2012-12-21 01:05:06+00:00,0.0,justinbmeyer,MEMBER,2,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+39,Add text selection to funcunit drag,"We would like funcunit's ""drag"" event to select text and nodes in the browser, just like when you click and drag with your mouse.  Ideally it should use/populate each browser's native selection framework.",ekubacki,NONE,2013-02-01 21:02:30+00:00,False,,,v2.1,4,2,2013-05-26 19:33:56+00:00,113.94,imjoshdean,NONE,0,1,0,1,"['enhancement', 'p4']",False,True,False,False,False,False,False,False,True,False,False,False,False,False,False
+41,is there a way to use it with testem/testacular?,,stereobooster,NONE,2013-03-08 10:51:38+00:00,True,2013-05-25 23:05:24+00:00,78.51,,3,2,2013-04-10 04:56:51+00:00,32.75,asavoy,NONE,0,0,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+46,funcunit not producing valid junit xml files,"When running your funcunit tests with following command
+./js funcunit/open/phantomjs funcunit.html -out ""results.xml"" the resulting xml file isn't correct. I has class in it's testcases which has to be classname.
+By changing
+<testcase class=""' + xmlEncode(classPrefix FuncUnit.browserName
+to
+<testcase classname=""' + xmlEncode(classPrefix + FuncUnit.browserName
+in output.js it is fixed and you can use the valid junit xml files with xunit.",JeroenNouws,NONE,2013-06-27 09:02:05+00:00,True,2013-11-01 19:06:23+00:00,127.42,,3,12,2013-06-27 09:43:10+00:00,0.03,lastzero,CONTRIBUTOR,0,2,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+47,Funcunit finding within a context,"According to the documentation on the website you can give a number or string as context and funcunit will look up the frame according to the context supplied.
+However in core.js in getContext you create a selector iframe:eq(+context+) or iframe[name='+context+'] this will never work for getting a frame making it frame instead of iframe does the trick.
+So you might consider changing your documentation or change the code to effectively select frames.",JeroenNouws,NONE,2013-07-15 13:01:23+00:00,False,,,,2,0,,,,,0,0,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+48,Doc is not up-to-date,"Hi there,
+I am new to funcunit and it seems to me that documentation that is here (http://javascriptmvc.com/docs/FuncUnit.prototype.visible.html) is not up-to-date. Also the md files that are into this github page have broken links (or non functioning links like [FuncUnit.open open] ).
+Could you update this documentation please ?
+Thanks in advance",lauhub,NONE,2013-08-20 15:15:36+00:00,True,2013-09-20 14:27:02+00:00,30.97,,3,4,2013-09-20 14:14:08+00:00,30.96,kryger,NONE,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+49,Example 404 in docs,"http://javascriptmvc.com/docs/FuncUnit.html#section_Runninginbrowser
+Has a 404 - the link that points to http://javascriptmvc.com/docs/funcunit/test/autosuggest/funcunit.html",zkat,NONE,2013-08-25 20:51:41+00:00,True,2013-11-01 19:13:20+00:00,67.93,,2,1,2013-11-01 19:13:20+00:00,67.93,alexisabril,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+50,Funcunit sometimes generate invalid XML files,"Using the ouput option to generate an xml file with test result sometimes create broken xml files. The command I use to generate the results xml is:
+./js funcunit/open/phantomjs myapp/myapp_test.html -out myapp/docs/funcunit.xml
+
+The problems is related to an invalid tag ""testcase"" inside the ""testsuite""(s)  record during the process. All the tests are executed but somtimes the report process just add only a closing """" tag, this breaks my build when it runs with our CI server (jenkings + xunit plugin). The test script contents is something like:
+steal('funcunit')
+    // test modules
+    .then('myapp/modules/expression/builder/builder_test.js')
+    .then('myapp/modules/expression/factory/factory_test.js')
+    .then('myapp/modules/expression/variable_selector/variable_selector_test.js')
+    // etc ...
+
+All tests pass, no errors inside them, no java exceptions, nothing wrong except for broken xml files.
+My Environment:
+
+Ubuntu 12.04 64bit (tested even with 13.04 64bit)
+PhantomJS 1.9.1 (for 64bit platform)
+Jenkins 1.505
+XUnit 1.6.1",th3n3rd,NONE,2013-09-17 07:41:18+00:00,True,2013-11-01 19:07:22+00:00,45.48,,3,5,2013-09-17 08:59:36+00:00,0.05,lastzero,CONTRIBUTOR,0,2,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+51,API improvements,"Issue by justinbmeyer from Wednesday Sep 04, 2013 at 04:27 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/14
+
+[ ] The menu is useless.
+[ ] Documentation presentation issues
+The format of the docs should match CanJS's.  Lets take: http://funcunit.com/docs/FuncUnit.prototype.click.html for example.
+
+its signature click(options [,success]) should be either .click(options [,success]) or funcunit.click(options [,success]).
+signatures are for terse, explanations.  There are way too many examples.
+Links are broken.
+Sentences should start with a capital letter.",alexisabril,CONTRIBUTOR,2013-10-10 19:16:21+00:00,True,2013-10-10 19:41:58+00:00,0.02,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+52,Feature list,"Issue by moschel from Tuesday Sep 03, 2013 at 15:07 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/5
+
+Homepage needs a brief feature list (why should I use this?) similar to canjs.com",alexisabril,CONTRIBUTOR,2013-10-10 19:17:57+00:00,False,,,,3,1,2013-11-01 19:30:27+00:00,22.01,alexisabril,CONTRIBUTOR,0,1,0,0,"['p3', 'website']",False,False,False,True,True,False,False,False,False,False,False,False,False,False,False
+53,CI setup,"Issue by alexisabril from Tuesday Sep 03, 2013 at 16:15 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/8
+
+Currently, travis runs for the master branch on every commit with a successful response(bug in testee).
+However, the tests are currently failing when run in phantom.",alexisabril,CONTRIBUTOR,2013-10-10 19:17:57+00:00,True,2016-03-23 13:48:41+00:00,894.77,,2,1,2016-03-23 13:48:41+00:00,894.77,m-mujica,CONTRIBUTOR,0,1,0,0,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+54,Design tweaks,"Issue by daffl from Tuesday Sep 03, 2013 at 16:21 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/9
+
+I really like the FuncUnit page design but I think that the flat style from the front page can also be brought over to the API and guides by removing some of the borders and just using background colors. Attached an example screenshot:
+
+What do you think @tomgreever?",alexisabril,CONTRIBUTOR,2013-10-10 19:17:58+00:00,True,2013-11-01 19:30:48+00:00,22.01,,1,2,2013-10-10 19:17:58+00:00,0.0,alexisabril,CONTRIBUTOR,0,1,0,0,['website'],False,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+55,assertion counters do not show any pass/fails for func unit tests,"Issue by shcarrico from Monday Sep 09, 2013 at 19:55 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/17
+
+I propose we add a ""FuncUnit"" assertion and pass/fail it for each test / adapter, so we do not have 0 assertions passing/failing for funcunit tests. Any test w/ a funcunit operation would then have 1 matching assertion of ""FuncUnit Tests"" or something similar, so you can see clearly whether they have passed/failed for that test.",alexisabril,CONTRIBUTOR,2013-10-10 19:17:59+00:00,True,2013-11-05 20:41:56+00:00,26.06,v2.1,1,2,2013-10-10 19:18:00+00:00,0.0,alexisabril,CONTRIBUTOR,0,1,0,0,"['enhancement', 'question']",False,True,False,False,False,True,False,False,False,False,False,False,False,False,False
+56,Sometimes click() method gives an error.,"Issue by rinatio from Tuesday Oct 01, 2013 at 18:18 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/20
+
+An error says: ""Uncaught TypeError: Cannot read property 'left' of undefined """,alexisabril,CONTRIBUTOR,2013-10-10 19:18:00+00:00,True,2013-11-01 19:33:13+00:00,22.01,,2,6,2013-10-10 19:18:01+00:00,0.0,alexisabril,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+57,Question: how to access jQuery for new opened window,"Issue by rinatio from Tuesday Oct 01, 2013 at 18:44 GMT
+Originally opened as https://github.com/bitovi/funcunit.js/issues/21
+
+Sometimes I'd like to use jQuery instead of F to execute some code in the ""test app window"" after F.open(). How can I access it? I guess F.win.$ refers to the app's jQuery, not F.jQuery, but F.jQuery executes inside qUnit window. I know I can use
+F.jQuery('selector', F.win.document)
+
+but is there something simpler? A shortcut?",alexisabril,CONTRIBUTOR,2013-10-10 19:18:02+00:00,True,2016-10-31 23:05:49+00:00,1117.16,,3,5,2013-10-10 19:18:02+00:00,0.0,alexisabril,CONTRIBUTOR,0,2,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+58,FuncIt IDE no longer working,"Hi Everybody,
+I am comparatively new to FuncUnit. In my organization we have been using FuncUnit for over a year now. We have been using Funcit IDE to generate test scripts for us. But it no longer seems to be working.Is the Funcit IDE no longer supported? Any help would be appreciated.",newToFuncUnit,NONE,2013-10-15 17:34:44+00:00,True,2013-10-15 17:39:24+00:00,0.0,,3,3,2013-10-15 17:39:24+00:00,0.0,alexisabril,CONTRIBUTOR,0,1,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+59,Trick to verify that a <select> is empty?,"I need to verify that a <select> element is empty.
+When I call F(""select.mine"").val();  I get null.
+When I call F(""select.mine"").val(null);, I get an exception: ""TypeError: Cannot read property 'timeout' of null"".
+I can do F(""select.mine option:selected"").missing(); as an alternative, but the the first one looks like a bug. Should .val([expected]) be updated to allow null?",geekytime,NONE,2013-10-31 18:51:01+00:00,True,2013-11-01 18:54:25+00:00,1.0,,2,2,2013-11-01 18:54:25+00:00,1.0,alexisabril,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+60,Possible problems with PhantomJS and F.open()?,"I've got funcunit almost working with grunt-contrib-jasmine (which runs jasmine tests in PhantomJS and reports back the results via the console), without Selenium, etc.
+I'm pretty sure that the problem I'm running into is with how FuncUnit and PhantomJS handle popup windows. I'm not getting much info back from Phantom, but I am getting this error:
+>> TypeError: 'undefined' is not an object (evaluating 'FuncUnit.win.document.documentElement') at
+>> http:/127.0.0.1:8000/static/bower_components/funcunit/dist/funcunit.js:2648 
+>> http:/127.0.0.1:8000/static/bower_components/funcunit/dist/funcunit.js:2657 
+>> http:/127.0.0.1:8000/static/bower_components/funcunit/dist/funcunit.js:4285 
+
+There's some discussion about frames vs. popups on this page. Is there something I need to do to switch funcunit into 'modern Node/PhantomJS mode', so it can take advantage of Phantom's window.open(), instead of opening windows in an iframe?
+Is there any other information about trying to run FuncUnit tests via PhantomJS without using the 'official process'?
+This discussion may also be of interest to anyone following #32.",geekytime,NONE,2013-11-01 16:18:10+00:00,True,2013-11-05 01:33:24+00:00,3.39,,2,10,2013-11-01 19:01:38+00:00,0.11,alexisabril,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+61,Back to back opens with hash,,alexisabril,CONTRIBUTOR,2013-11-02 01:20:37+00:00,False,,,,2,0,,,,,0,0,0,0,['p4'],False,False,False,False,False,False,False,False,True,False,False,False,False,False,False
+62,Drag offset,,alexisabril,CONTRIBUTOR,2013-11-02 01:22:59+00:00,False,,,,3,1,2017-06-20 19:12:00+00:00,1326.74,kdillon,CONTRIBUTOR,0,1,0,0,['p4'],False,False,False,False,False,False,False,False,True,False,False,False,False,False,False
+63,Cached selectors don't re-query the DOM,,alexisabril,CONTRIBUTOR,2013-11-02 01:31:11+00:00,False,,,v2.1,4,3,2013-12-10 01:09:05+00:00,37.98,simoami,NONE,0,1,0,1,"['bug', 'p3']",False,False,False,False,True,False,False,False,False,False,False,False,True,False,False
+64,F.win not found,"Hi, we are working on simple framework for UI testing based on Jasmine and Funcunit and currently we need to do some tricks in FF profile via karam-firefox-launcher to avoid FuncUnit to fail with 'F.win not found' error.
+You can look at the failing conditions here:
+https://github.com/NastassiaOsipchyk/JsUiFramework
+Or at our trick here:
+karma-runner/karma-firefox-launcher#14
+I saw some fragment of code that should catch the case when popups are blocked, but it doesn't.
+Could you make some fix so I don't need to trick firefox-launcher or provide some working example how you catch and drive browser?",andrei-khveras,NONE,2013-11-06 11:00:27+00:00,True,2013-11-06 20:27:00+00:00,0.39,,2,2,2013-11-06 20:27:00+00:00,0.39,alexisabril,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+65,F.size() parameter handling issue,"In getters.js (line 444), the code reads:
+if(typeof timeout == 'function'){
+    success = timeout;
+    message = success; // <- previous value of 'success' is already wiped out by previous statement
+    timeout = undefined;
+}
+
+Notice that the message is set to the handler function instead of a string. What you want is:
+if(typeof timeout == 'function'){
+    message = success; // <- first get the message from the success property
+    success = timeout; // <- then set the success to the handler
+    timeout = undefined;
+}",simoami,NONE,2013-12-04 17:29:13+00:00,True,2013-12-04 19:31:15+00:00,0.08,v2.1,2,2,2013-12-04 19:32:00+00:00,0.09,alexisabril,CONTRIBUTOR,0,1,0,1,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+66,F.wait() parameter handling issue,"Hi Alex,
+I was looking at:
+waits.js (line 274)
+wait: function( checker, timeout, success, message ) {
+    if(typeof checker === ""number""){
+        timeout = checker;
+        FuncUnit.wait(timeout, success)
+        return this;        
+    } else {
+        return this.size(checker, timeout, success, message)
+    }
+},
+
+If F().wait() was called in the context of a timer wait, as implied by typeof checker === ""number"" then the call signature is expected to be: F('selector').wait(1234, successFn)
+According to my example, the mapping is as follows:
+checker -> 1234
+timeout -> successFn
+success -> undefined
+message -> undefined
+So the expected internal call is: FuncUnit.wait(checker, timeout)
+But in your logic you are using the variable success for the success handler instead of timeout which holds the success handler.
+This is the suggested fix:
+wait: function( checker, timeout, success, message ) {
+    if(typeof checker === ""number"") {
+        success = timeout;
+        timeout = checker;
+        FuncUnit.wait(timeout, success);
+        return this;        
+    } else {
+        return this.size(checker, timeout, success, message)
+    }
+},",simoami,NONE,2013-12-08 00:10:26+00:00,False,,,v2.1,3,1,2013-12-10 03:59:16+00:00,2.16,alexisabril,CONTRIBUTOR,0,1,0,0,"['bug', 'p2']",False,False,False,False,False,False,False,False,False,False,False,False,True,False,True
+67,"Request for additional waits: checked(), selected(), disabled() ...etc.","While automating an internal application, I found myself having to write workarounds for some basic use cases. It's common that the user would want to check the state of form elements when automating UI or wait for the desired state condition to take place. One such case is the state of checkboxes.
+I suggest adding the following waits to avoid the need for workarounds:
+
+checked()
+selected()
+disabled()
+containsHtml() (in contrast to .html() this is for partial matching)
+containsText() (in contrast to .text() this is for partial matching)
+
+Let me know what you think!",simoami,NONE,2013-12-08 23:37:55+00:00,False,,,,4,5,2013-12-09 01:58:13+00:00,0.1,justinbmeyer,MEMBER,1,1,0,1,"['enhancement', 'p4']",False,True,False,False,False,False,False,False,True,False,False,False,False,False,False
+68,Package jQuery internally,No reason not to have jQuery internal to the dist funcunit as opposed to requiring users to have it on the page.,alexisabril,CONTRIBUTOR,2013-12-24 23:51:44+00:00,False,,,v2.1,3,2,2014-11-24 15:13:45+00:00,334.64,skamaraj,NONE,0,1,0,1,"['enhancement', 'p2']",False,True,False,False,False,False,False,False,False,False,False,False,False,False,True
+69,Basic click does not work in IE,"am running a basic funcunit test as below for the test.html.. which has only
+<html><body><div>Test</div></body></html>
+module('test', {
+  setup: function() {
+    F.open('test.html');
+  }
+});
+
+//test to verify that head, body are not empty
+
+test(""Page render Test : Head, Body and Header message"", function(){
+ ok( F(""body"").size(), ""There are elements in the Head""); //head is not empty 
+ F('body').click();
+});
+This gives the below error
+1.There are elements in the Head
+2.Unspecified error.Source: /j/test/resources/jquery.js:6110
+3.Could not click 'body'Source: at assertOK (/j/test/resources/funcunit.js:2720:4)
+at Anonymous function (/j/test/resources/funcunit.js:4243:8)",raviviswanathan,NONE,2014-01-16 16:18:50+00:00,False,,,v2.1,4,11,2014-01-16 16:22:38+00:00,0.0,alexisabril,CONTRIBUTOR,0,3,0,1,"['bug', 'p2']",False,False,False,False,False,False,False,False,False,False,False,False,True,False,True
+70,Create a way to clear an input,"I keep writing this over and over in tests:
+  F('input').type('[ctrl][a][ctrl-up][delete]foo');
+Would be nice if there was a FuncUnit.prototype.clear so you would just do:
+F('input').clear().type('foo');",matthewp,CONTRIBUTOR,2014-02-20 16:44:08+00:00,True,2014-02-20 16:55:37+00:00,0.01,,3,6,2014-02-20 16:51:03+00:00,0.0,alexisabril,CONTRIBUTOR,0,2,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+72,FuncUnit NPM module,"To follow up on the discussion if FuncUnit should be an NPM module started in #40 I propose the following:
+Provide FuncUnit itself (basically this repository) as an NPM module but additionally add a funcunit command line tool which lets you
+
+Run tests in different browsers (PhantomJS by default) on the command line using Testee
+Initialize the default HTML page plus the library
+Provide a server that gathers and runs all your tests
+
+For example:
+
+funcunit run module.test.js --lib mocha
+
+Will run the tests from module.test.js in PhantomJS using a default HTML test page with Mocha initialized (module.test.js has to be a valid Mocha test file of course) and report to the command line.
+
+funcunit run *.test.js --lib qunit --browser firefox
+
+Will run all .test.js files in Firefox using a default HTML test page with QUnit initialized and report to the command line.
+
+funcunit server *.test.js --lib jasmine
+
+Will start up a static webserver that when opened in a webbrowser will serve the default HTML page with Jasmine initialized and run all .test.js files in the current folder.
+
+funcunit init test/index.html --lib mocha
+
+Will write the default HTML test page with Mocha and FuncUnit to test/index.html.",daffl,CONTRIBUTOR,2014-02-26 19:35:51+00:00,False,,,,3,3,2014-02-26 19:39:20+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+73,Error: global leak detected: selector,2.1.0-pre,stevenvachon,NONE,2014-03-07 05:00:08+00:00,False,,,,3,1,2014-03-07 17:33:56+00:00,0.52,matthewp,CONTRIBUTOR,0,1,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+74,Mocha's done() invoked with non-Error,"F(""something"").exists(done);
+throws an error. Must we really do this instead?:
+F(""something"").exists( function(){ done() } );",stevenvachon,NONE,2014-04-09 13:25:07+00:00,False,,,,3,7,2014-04-09 14:29:43+00:00,0.04,daffl,CONTRIBUTOR,0,1,0,1,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+75,Mouse over,"Hi,
+When I execute the following piece of code:
+F('a:contains(""Home"")').move('a:contains(""Mail"")')
+I can see a red point moving from my Home link to my Mail link. But, it seems that the hover event is not triggered.
+Can you please tell me if move action can be used to trigger such action? I want simulate a user playing with a menu done in CSS and so using the :hover attribute.
+My question is similar to this one: https://forum.javascriptmvc.com/topic/triggering-mouse-over-on-menu-items-to-display-sub-menu-items
+Regards,
+Thibaut",thibaut-sticky,NONE,2014-04-09 14:37:04+00:00,True,2014-06-29 16:55:10+00:00,81.1,,2,1,2014-06-29 16:55:10+00:00,81.1,matthewp,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+76,Publish Func Unit to NPM,"Would it be possible to make FuncUnit published on NPM?
+
+Why, you ask?
+Because I have a test suite which runs using browserify, and FuncUnit is shimmed out to work with it. I'm making an installable NPM package that wraps FuncUnit (to make it promise-y) and it will have FuncUnit as a dep.",kahnvex,NONE,2014-06-10 17:22:16+00:00,True,2016-10-31 17:11:26+00:00,873.99,,6,7,2014-06-29 16:55:59+00:00,18.98,matthewp,CONTRIBUTOR,1,2,0,2,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+77,Proxy setup for Linux?,"The docs only cover setting up a Node.js proxy for debugging remote sites on Windows, and very loosely at that. How can I do the same for Linux, specifically Ubuntu 14.04?",alsoicode,NONE,2014-07-01 19:46:45+00:00,False,,,,3,0,,,,,0,0,0,0,"['p2', 'question', 'website']",False,False,False,True,False,True,False,False,False,False,False,False,False,False,True
+79,F.type() on input elements which are disabled should fail.,"Hi there.
+I'm not sure if it is a bug or not, but why is it possible to ""type"" on an input-element which is disabled? My expectation is that it should fail on qunit. First of all you can't click on an element which is disabled, secondly you can't type on an input element which is disabled.
+Small fiddle to test it out:
+http://jsfiddle.net/NvaJ8/2/
+Thanks for any suggestions!",NightkingCH,NONE,2014-07-31 15:01:08+00:00,False,,,,2,1,2014-12-14 23:15:12+00:00,136.34,NightkingCH,NONE,0,0,0,1,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+80,Mocha adapter failing tests time out,"Using the Mocha adapters, failing tests do show the error message in the console (as an uncaught error) but officially they time out. This causes after hooks not to run and all subsequent tests to fail.",daffl,CONTRIBUTOR,2014-08-07 21:25:59+00:00,True,2016-10-31 17:03:19+00:00,815.82,,2,1,2016-10-31 17:03:19+00:00,815.82,mickmcgrath13,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+81,Adapters should be separate from FuncUnit,"Jasmine has changed it's approach to async execution in v2. This modifies the jasmine-funcunit adapter to take a done() callback into account, as opposed to waitsFor(). This illustrates the need to have independent, versioned adapters so that we can support FuncUnit with any version of QUnit, Jasmine or Mocha without re-versioning FuncUnit itself.",alexisabril,CONTRIBUTOR,2014-08-14 02:19:01+00:00,False,,,,4,4,2014-08-14 02:24:31+00:00,0.0,justinbmeyer,MEMBER,1,1,0,1,"['enhancement', 'p3']",False,True,False,False,True,False,False,False,False,False,False,False,False,False,False
+82,Clicking button[type=button] shouldn't submit form when clicked,"Ran into this with my client. As it stands, if you have a form that looks something like this:
+<form>
+    <input type=""text"">
+    <button type=""submit"">Submit</button>
+    <button type=""button"">Does it matter?</button>
+</form>
+
+And you try simulating a click on the button[type=button] it will submit the form. This is counter to the HTML spec wherein only a button[type=submit] or a button without a type submits a form (more can be read here - http://www.w3.org/TR/html-markup/button.html).",imjoshdean,NONE,2014-09-04 20:07:17+00:00,True,2016-10-31 21:47:40+00:00,788.07,,3,5,2014-09-04 20:08:59+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,1,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+83,FuncUnit not compatible with new StealJS,"FuncUnit has errors all over the place when trying to use with new StealJS:
+
+steal(""funcunit/qunit/qunit.css"") needs to be steal(""funcunit/qunit/qunit.css!"")
+steal.then() doesn't work
+steal.bind('ready') doesn't work
+steal.config() throws an error
+some weird ordering of dependencies doesn't seem to work the same way anymore
+
+I've hacked my way through to fix tests for a legacy project, gotten much of the way, but are you guys actually interested in supporting a PR for it? As I'd need help to get it all the way:
+
+Tests don't seem to be as isolated as they used to (at least I found a test suite that had failing tests, but those tests would pass if run individually)
+It's not backwards compatible with legacy steal - that would be really tricky to do",asavoy,NONE,2014-09-19 15:37:05+00:00,True,2016-05-13 22:20:53+00:00,602.28,,2,6,2014-09-19 15:38:19+00:00,0.0,matthewp,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+87,Remove steal conditions,"There's a few places where we're tight coupling FuncUnit to StealJS:
+var fullPath = FuncUnit.getAbsolutePath(path);
+
+This breaks in applications that are using new Steal as there is no longer steal.isReady(amongst other API changes).",alexisabril,CONTRIBUTOR,2014-11-12 21:57:16+00:00,True,2016-11-01 15:28:19+00:00,719.73,,3,3,2015-04-08 13:18:29+00:00,146.64,matthewp,CONTRIBUTOR,0,2,0,0,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+88,FuncUnit registers itself at window scope. Can we have an AMD compliant FuncUnit which can be eaily loaded without steal.js,,skamaraj,NONE,2014-11-24 15:15:25+00:00,False,,,,2,0,,,,,0,0,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+89,When is the next version of funcunit 2.1 expected to be released?,,skamaraj,NONE,2014-12-01 20:37:36+00:00,True,2016-10-31 21:37:39+00:00,700.04,,2,1,2016-10-31 21:37:39+00:00,700.04,mickmcgrath13,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+90,.type() fails on input[type=number] fields in Chrome,"Trying to type in a numeric input is throwing an error on Chrome:
+
+JSFiddle example: here
+It works fine in Fx for now, but according to WHATWG HTML Living Standard, selection is only permitted with text/search, URL, tel and password inputs, so we should expect this to fail in all the browsers in the near future.",michalbe,CONTRIBUTOR,2014-12-18 11:53:01+00:00,True,2017-01-25 15:20:23+00:00,769.14,,5,2,2014-12-18 11:59:35+00:00,0.0,michalbe,CONTRIBUTOR,0,1,0,1,"['bug', 'p2']",False,False,False,False,False,False,False,False,False,False,False,False,True,False,True
+91,attr can take a Regular Expression,"This is undocumented but works, should be documented: http://funcunit.com/docs/FuncUnit.prototype.attr.html",matthewp,CONTRIBUTOR,2015-01-12 15:44:07+00:00,False,,,,2,0,,,,,0,0,0,0,"['documentation', 'p3']",True,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+92,npm install - error missing version,"Hi
+I listed ""bitovi/funcunit"" as ""devDependency"" in my package.json.
+When I run ""npm install"" I get an error regarding missing version.
+Please include ""version"" it in your package.json.
+Thanks",nimaai,NONE,2015-01-19 21:39:25+00:00,True,2016-10-31 17:01:21+00:00,650.81,,2,1,2016-10-31 17:01:21+00:00,650.81,mickmcgrath13,CONTRIBUTOR,0,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+93,Funcunit does not work properly under Phantomjs,"Hello, is funcunit still active? This is a great tool, but I have a problem when using it under phantomjs.
+Here is the sample code in demo.test.html file
+<html>
+<head>
+    <meta charset=""UTF-8"">
+    <title>Using QUnit Tests</title>
+    <script src=""/lib/jquery/jquery-1.9.1.js""></script>
+    <script src=""/lib/qunit-1.17.1.js""></script>
+    <script src=""/lib/funcunit.js""></script>
+    <link rel=""stylesheet"" href=""/css/qunit-1.17.1.css"">
+</head>
+<body>
+<div id=""qunit""></div>
+<div id=""qunit-fixture""></div>
+<script src=""specs/demo.test.js""></script>
+</body>
+</html>
+The demo.test.js file is very simple.
+module('Some Demo tests', {
+  beforeEach: function() {
+
+  // F.open('/'); 
+   console.log('First Demo BeforeEach Called');
+    return true;
+
+  },
+  afterEach: function() {
+    return;
+  }
+});
+
+test('A simple demo with FuncUnit', function() {
+  F('body').visible('it shows the body');
+});
+It works fine in Chrome 39 but does not work in Phantomjs 1.9.8.
+I'm using the grunt-contrib-qunit to start Phantomjs to test this. It always timed out.
+If I add F.open('/') in the beforeEach function it works. Please help me find out what causes this problem? Is there any workaround?",php-max,NONE,2015-01-22 05:26:38+00:00,False,,,,3,2,2015-05-28 15:16:12+00:00,126.41,Mikular,NONE,0,0,0,2,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+94,Funcunit tests does not fully passed under Phantomjs,"Hi, I just forked funcunit. but find a problem. All funcunit tests can pass in latest chrome. But when I try to automate them using phantomjs. It failed at test ""Drag To"" (syn_test.js). I spent hours on this issue but cannot figure out what is the cause.
+I'm using grunt and  have tried testee andgrunt-contrib-qunit, both return same errors. It seems the dropover event listener never fired. Please help me find the causes of this problem. Thank you!",php-max,NONE,2015-01-22 05:34:01+00:00,False,,,,3,3,2015-01-22 06:15:20+00:00,0.03,justinbmeyer,MEMBER,1,0,0,1,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+97,FuncUnit seems broken with the very first example,"I downloaded https://raw.githubusercontent.com/bitovi/funcunit/v2.0.4/dist/funcunit.js from the frontpage of the website and tried out the following example in Chrome:
+<body>
+    <div id='a'>a</div>
+
+</body>
+
+<script src=""http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js""></script>
+<script src=""FuncUnit.js""></script>
+
+<script>
+    $(""#a"").click(function() {
+        console.log(""ok"")
+    })
+
+    F('#a').click();
+
+</script>
+
+I get the error: Uncaught TypeError: Cannot read property 'pauseTest' of undefined  FuncUnit.js:4206
+I also noticed that there is a different link to funcunit.js in the guide ( http://funcunit.com/guides/started.html ), the link being  http://funcunit.com/dist/latest/funcunit.js . I would assume the link there and on the front page should point to the same place - tho it does look like they happen to be the same file right now.",fresheneesz,NONE,2015-02-12 23:31:22+00:00,True,2015-02-12 23:37:41+00:00,0.0,,2,2,2015-02-12 23:32:57+00:00,0.0,justinbmeyer,MEMBER,1,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+98,Factor out the browser actions,It looks like you're making a pretty cool extension for Jasmine and Qunit. But I'd like to use the browser actions separately from those systems. It would be great if the browser actions were factored out into an entirely separate module that can be used independently of those testing frameworks.,fresheneesz,NONE,2015-02-12 23:39:29+00:00,True,2015-02-12 23:50:38+00:00,0.01,,1,2,2015-02-12 23:42:47+00:00,0.0,fresheneesz,NONE,0,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+100,Jasmine 2.2.1,"When I try to use FuncUnit with the Jasmine 2.2.1:
+
+Any idea?",victorwpbastos,NONE,2015-03-31 18:23:20+00:00,True,2016-10-31 16:59:43+00:00,579.94,,6,7,2015-03-31 18:24:41+00:00,0.0,victorwpbastos,NONE,1,2,0,3,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+102,docs broken on API page,Go to http://funcunit.com/docs/index.html and see that all the code blocks are not formatted right.,moschel,MEMBER,2015-04-13 18:21:37+00:00,True,2015-05-13 04:52:05+00:00,29.44,,3,1,2015-05-13 04:52:03+00:00,29.44,marshallswain,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+103,Readme not showing up on npm,https://www.npmjs.com/package/funcunit,matthewp,CONTRIBUTOR,2015-04-28 15:56:06+00:00,True,2016-03-23 13:50:10+00:00,329.91,,2,2,2016-03-23 13:46:59+00:00,329.91,m-mujica,CONTRIBUTOR,0,2,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+104,"DocumentJS 3.0, use gh-pages for FuncUnit.com","When looking at #102, I noticed that the funcunit.com repo was still set to use the rhino version of DocumentJS.  Since we are moving documentation into gh-pages in each repo, I've forked this funcunit repo and started moving the content from the funcunit.com repo into it.  After some troubleshooting, I've managed to get it to build, but will need some help to finish it.
+To do:
+
+ Get the demo on the home page to work again.
+ Fix the stylesheets. - The compiler halts in sidebar.less and in download.less.
+ Update the sidebar style so that the sidebar here looks more like a color-matched blue version of the one in steal
+ Move the _pages and _guides folders into funcunit/master and use those folders as the source for building the docs.
+ Get the active page in the menu bar to highlight again.
+ Clean up extra files.
+ Switch to built production version with new Steal
+ Fixed most of the style issues.
+ Upgraded the site to use the new Steal.
+ Changed the module import syntax to ES6 format.
+ No longer building the home page using DocumentJS because it was causing invalid markup when building the home page HTML into the layout's {{{content}}}.
+ Bundle Steal with the home page demo app.
+
+You can see it in its current state here: http://marshallswain.github.io/funcunit/
+Here's the repo: https://github.com/marshallswain/funcunit/tree/gh-pages
+@jandjorgensen",marshallswain,MEMBER,2015-05-09 01:59:31+00:00,True,2015-05-13 04:54:36+00:00,4.12,,1,1,2015-05-13 04:54:36+00:00,4.12,marshallswain,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+108,favicon only showing for home page,The generated docs aren't showing the favicon.,marshallswain,MEMBER,2015-05-13 05:03:19+00:00,False,,,,2,0,,,,,0,0,0,0,"['documentation', 'p3']",True,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+109,Home page bithub links are broken,"These links
+
+go here:",marshallswain,MEMBER,2015-05-13 05:31:15+00:00,True,2016-11-03 20:29:47+00:00,540.62,,2,4,2016-11-02 22:02:56+00:00,539.69,mickmcgrath13,CONTRIBUTOR,0,1,0,0,['p1'],False,False,True,False,False,False,False,False,False,False,False,False,False,False,False
+111,Fix page header styles,"Currently looks like this:
+
+Should look like this:",marshallswain,MEMBER,2015-05-13 18:14:33+00:00,True,2015-05-20 17:19:55+00:00,6.96,,1,1,2015-05-20 17:19:55+00:00,6.96,marshallswain,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+112,Fix code highlighting in docs.,,marshallswain,MEMBER,2015-05-13 22:27:37+00:00,False,,,,2,0,,,,,0,0,0,0,"['documentation', 'p3']",True,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+113,Issues with Bower dist,"main target is dist/funcunit.js, which is missing the browser folder within dist. CJS & AMD version are also missing this folder.",alexisabril,CONTRIBUTOR,2015-05-18 22:36:58+00:00,False,,,,3,11,2015-05-18 22:42:11+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,0,"['bug', 'p2']",False,False,False,False,False,False,False,False,False,False,False,False,True,False,True
+114,where is the definition of checkSupport?,"I just download and install the 3.0 but when I run it , it reports checkSupport is not defined, which is called on line 690. What is that? How can I mute the warning or do I really miss something?",php-max,NONE,2015-05-19 02:35:07+00:00,False,,,,4,3,2015-05-28 15:28:58+00:00,9.54,Mikular,NONE,0,0,0,3,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+116,"Cannot get ""type()"" in Funcunit to work for JavascriptMVC rapid start todos tutorial.","Hello,
+Great work on the JavaScriptMVC!
+I followed the tutorial on JavaScriptMVC.com to build the basic Todo app. I made some modifications to the code.
+todos.js
+steal('can',
+    './todos.ejs',
+    'can/util/fixture',
+    function (can, todosEJS) {
+        Todo = can.Model.extend({
+            findAll: ""GET /todos"",
+            findOne: ""GET /todos/{id}"",
+            create: ""POST /todos"",
+            update: ""PUT /todos/{id}"",
+            destroy: ""DELETE /todos/{id}""
+        }, {});
+        var TODOS = [
+            {
+                id: 1,
+                name: ""wake up""
+            },
+            {
+                id: 2,
+                name: ""take out trash""
+            },
+            {
+                id: 3,
+                name: ""do dishes""
+            }
+        ];
+        can.fixture({
+            // findAll
+            ""GET /todos"": function () {
+                return TODOS;
+            },
+            // findOne
+            ""GET /todos/{id}"": function (orig) {
+                // return the one item with that unique ID
+                var result = $.grep(TODOS, function(e){
+                    return e.id == (+orig.data.id);
+                });
+                return result[0];
+            },
+            // create
+            ""POST /todos"": function (request) {
+                TODOS.push(request.data);
+                return {
+                    id: TODOS.length
+                };
+            },
+            // update
+            ""PUT /todos/{id}"": function (orig) {
+                TODOS[(+orig.data.id) - 1].name = orig.data.name;
+                return TODOS[(+orig.data.id) - 1];
+            },
+            // destroy
+            ""DELETE /todos/{id}"": function (orig) {
+                TODOS.splice(((+orig.data.id) - 1), 1);
+                console.log(TODOS);
+                return {};
+            }
+        });
+
+        var Todos = can.Control({
+            init: function (element) {
+                Todo.findAll({}, function (todos) {
+                    element.html(todosEJS(todos));
+                });
+            },
+            ""li click"": function (li) {
+                li.trigger('selected', li.data('todo'));
+            },
+            ""li .destroy click"": function (el, ev) {
+                // get the li element that has the model
+                var li = el.closest('li');
+
+                // get the model and destroy it
+                li.data('todo').destroy();
+            }
+        });
+
+        Editor = can.Control({
+            todo: function (todo) {
+                this.options.todo = todo;
+                this.on();
+                this.setName();
+            },
+            // a helper that sets the value of the input
+            // to the todo's name
+            setName: function () {
+                this.element.val(this.options.todo.name);
+            },
+            // listen for changes in the todo
+            // and update the input
+            ""{todo} updated"": function () {
+                this.setName();
+            },
+            // when the input changes
+            // update the todo instance
+            ""change"": function () {
+                var todo = this.options.todo;
+                todo.attr('name', this.element.val());
+                todo.save();
+            }
+        });
+
+        Routing = can.Control({
+            init: function () {
+                this.editor = new Editor(""#editor"");
+                new Todos(""#todos"");
+            },
+            // the index page
+            ""route"": function () {
+                $(""#editor"").hide();
+            },
+            ""todos/:id route"": function (data) {
+                $(""#editor"").show();
+                console.log(data);
+                Todo.findOne(data, $.proxy(function (todo) {
+                    this.editor.todo(todo);
+                }, this));
+            },
+            "".todo selected"": function (el, ev, todo) {
+                can.route.attr('id', todo.id);
+            }
+        });
+
+        // create routing controller
+        new Routing(document.body);
+    });
+
+
+
+todos.html
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <ul id=""todos""></ul>
+    <input type=""text"" name=""editor"" id=""editor"" />
+
+    <script>
+        steal = {
+            suffix: ""0.0.1""
+        }
+    </script>
+    <script src=""../steal/steal.js?todos/todos.js"">
+    </script>
+</body>
+
+</html>
+
+todos.ejs
+<% this.each(function(todo){ %>
+  <li <%= (el) -> el.data('todo', todo) %> class='todo'>
+    <%= todo.attr('name') %>
+    <a href=""javascript://"" class='destroy'>X</a>
+  </li>
+<% }) %>
+
+
+todos_test.js
+steal('funcunit', function (S) {
+
+    module('todos', {
+        setup: function () {
+            S.open(""//todos/todos.html"");
+        },
+        teardown: function () {
+            // S.win.close();
+        }
+    });
+
+    test('verify first todo', function () {
+        S("".todo:first"").click();
+
+        S('#editor')
+            .visible()
+            .click()
+            .type("" one[enter]"")
+            .val('wake up one');
+    });
+
+});
+
+test.html
+<html>
+  <body>
+    <script src=""../steal/steal.js?todos/todos_test.js""></script>
+  </body>
+</html>
+
+I'm trying to write a unit test that gives the UPDATE route coverage. However, the test never writes "" one"" in the input box and the test always fails. Could you please help me find what I'm missing?
+Best,
+Aaron",aaronfranco,NONE,2015-05-24 03:52:11+00:00,False,,,,2,1,2015-05-29 20:17:24+00:00,5.68,aaronfranco,NONE,0,0,0,1,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+117,F.win() typo,"http://funcunit.com/docs/FuncUnit.win.html
+F.win() is a property, not a method. //F.win instead of F.win()",alexisabril,CONTRIBUTOR,2015-05-26 20:02:55+00:00,True,2015-12-01 21:55:36+00:00,189.08,,2,0,,,,,0,0,0,0,['documentation'],True,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+118,Docs: Fix FuncUnit broken link on API page,The link to the Getting Started Guide is broken.,marshallswain,MEMBER,2015-05-29 14:38:10+00:00,True,2015-06-18 14:41:26+00:00,20.0,,1,0,,,,,0,0,0,0,['documentation'],True,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+121,funcunit.com pages have no title,All titles at funcunit.com are empty,daffl,CONTRIBUTOR,2015-07-08 16:55:07+00:00,True,2016-11-03 21:21:32+00:00,484.19,,3,4,2015-07-08 17:15:38+00:00,0.01,marshallswain,MEMBER,1,1,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+122,Sometimes click() method gives for Anchor tag,"Hi ,
+Im having muliple anchor tags with same classes  in HTML, But each anchor tag exisit in some unique Div. Can you please tell me how to click the anchor tag by using FuncUnit",santhoshranjan,NONE,2015-07-15 04:43:51+00:00,True,2015-07-15 08:27:05+00:00,0.16,,2,2,2015-07-15 08:27:05+00:00,0.16,alexisabril,CONTRIBUTOR,0,1,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+123,multiple Anchor tags with same classs in not clickable,"Hi Alex,
+For Issue 122 , Im creating new issue.
+Thank you very much for your quick response, As per your suggestion i have implemented but still its not trigerring the next button.
+I'm pasting my anchor tag code here:
+<a  class=""next roundButton orangeGrad floatRight"" href=""#"">                                            <div class=""org_lefttop""></div>
+<div class=""org_leftdown""></div>
+<div class=""org_righttop""></div>
+<div class=""org_rightdown""></div>
+<span class=""downarrow"">次へ</span></a>
+
+I will be having similar the 4 anchor tag in my html. and I need to respective logic on click of achor tag.
+I tried with the following code
+F('a.next:first').click(); but its not working. Can you help me in this.",santhoshranjan,NONE,2015-07-15 10:27:38+00:00,False,,,,2,0,,,,,0,0,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+124,".type(""[ctrl]a[ctrl-up]"") does not work","This test writes 'a' at the end of the text.
+(function () {
+    function setup() {
+        F.open(""index.html"");
+    }
+
+    module(""Ctrl + A"", {beforeEach: setup});
+
+    test(""Ctrl+A"", function (assert) {
+        var done = assert.async();
+
+        S("".hello"").exists(function () {
+            this.type(""[ctrl]a[ctrl-up][delete]"", function () {
+                assert.ok(true);
+                done();
+            });
+        });
+    });
+}());
+<body>
+    <h1>Type Test</h1>
+    <form>
+        <input class=""hello"" type=""text"" value=""Hello koala!""/>
+    </form>
+</body>
+
+FuncUnit 3.0.0
+jQuery 2.1.4
+QUnit 1.18
+Chrome 43",koalixCZ,NONE,2015-07-22 07:25:40+00:00,True,2015-08-13 10:33:47+00:00,22.13,,1,1,2015-07-22 07:27:15+00:00,0.0,koalixCZ,NONE,0,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+125,Getting started guide examples link,"Examples are currently linked to a broken url, moved to: https://github.com/bitovi/funcunit/tree/gh-pages/examples
+Todo: verify the examples are still up to date & fix broken url",alexisabril,CONTRIBUTOR,2015-07-29 16:42:38+00:00,False,,,,6,4,2016-04-25 17:22:01+00:00,271.03,julia-allyce,CONTRIBUTOR,1,2,0,1,"['bug', 'developer relations', 'documentation', 'help wanted', 'p3', 'website']",True,False,False,True,True,False,False,False,False,False,True,False,True,True,False
+126,Document function chaining on website,"FuncUnit adds all actions to a queue to ensure that items fire in the correct order. Not only could this be made a little clearer (it helps with the overall understanding of the tool), but it should be noted that functions can be added to the chain:
+F(""input"").exists().type(""hello world"");
+$(""input"").text() === ""hello world""; //-> not likely, due to how FuncUnit queue works
+
+// queue up a function to run
+F(function () {
+    $(""input"").text() === ""hello world""; //-> true
+});",DesignByOnyx,NONE,2015-08-12 23:33:31+00:00,False,,,,2,0,,,,,0,0,0,0,"['documentation', 'p3']",True,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+127,exists() requires a message or else QUnit complains,"If exists() is the only test which runs and a message is omitted, QUnit will complain that at least 1 assertion was expected.
+QUnit.test(""The input exists"", function () {
+    F(""input"").exists();
+});
+The following will report that 1 assertion was successful:
+QUnit.test(""The input exists"", function () {
+    F(""input"").exists('The input exists');
+});",DesignByOnyx,NONE,2015-08-13 01:45:52+00:00,False,,,,4,2,2015-08-13 01:47:36+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+128,Position API not working as expected instead gives an error. Please refer the code below,"F(""#xyz"").exists().click(function(){
+equal(F(""div[class~=mw_type_Panel]"").position({top: 50, left: 50}));
+});",sanketmi,NONE,2015-08-25 18:08:13+00:00,False,,,,2,0,,,,,0,0,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+130,homepage is broken,"The demos on the homepage don't seem to work at all. The QUnit tests are all failing.
+I was trying on Chrome.",moschel,MEMBER,2015-10-11 18:17:51+00:00,True,2015-10-12 03:11:22+00:00,0.37,,2,1,2015-10-12 03:11:22+00:00,0.37,alexisabril,CONTRIBUTOR,0,1,0,0,['bug'],False,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+132,Better error message when F.open() is blocked by popup blocker,"There needs to be a better error message thrown/displayed when F.open() is blocked by popup blocker. The error currently says Uncaught TypeError: Cannot read property '___FUNCUNIT_OPENED' of undefined.
+It's not enough to indicate the probable issue.
+Thanks",b2amar,NONE,2015-11-13 01:55:31+00:00,True,2016-10-31 20:31:27+00:00,353.77,,3,2,2015-11-14 04:39:40+00:00,1.11,marshallswain,MEMBER,1,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+133,I can't get funcunit to run,"I am searching for a basic example of running funcunit from the command line. In general I am told to type: ./js funcunit/open/... link to html. I don't have a command ./js or js. The other option is to run node node ... when I do node starts, but I am told node does not exist. That is true, there is no file 'node' in the current directory. Some posts suggest going to the funcunit folder. The file does not exist there either.
+I am running on a MAC. Please help me! I am using funcunit 3.0.0.
+Thanks",RALifeCoach,NONE,2016-01-12 17:41:13+00:00,True,2016-08-11 20:01:05+00:00,212.1,,3,6,2016-01-12 17:45:37+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+134,Site link to example package is broken,"Example package archive, currently referenced from http://funcunit.com/guides/Guides.guides.start.html page, leads to the 404 page: http://funcunit.com/dist/examples.zip
+I also was not find examples on the GitHub.",isadovskiy,NONE,2016-01-14 07:55:54+00:00,False,,,,4,2,2016-04-25 17:27:52+00:00,102.4,julia-allyce,CONTRIBUTOR,0,2,0,0,"['help wanted', 'p3']",False,False,False,False,True,False,False,False,False,False,True,False,False,False,False
+135,Touch Support,"I'm using FuncUnit a lot for JS testing, and wondering if there is any plan for FuncUnit to provide touch events API such as tap, long hold, pinch.",victor-xiong,NONE,2016-01-20 17:51:26+00:00,True,2017-04-19 15:31:08+00:00,454.9,,6,5,2016-01-20 18:29:43+00:00,0.03,matthewp,CONTRIBUTOR,1,2,0,1,"['enhancement', 'p3']",False,True,False,False,True,False,False,False,False,False,False,False,False,False,False
+136,"Type performs implicit click, why?","Looks like funcunit type method sends a click as part of typing. When applying type to elements like checkboxes, the state of the checkbox can change unexpectedly. Canvas based testing is also weird due to this side effect.
+for example
+F(checkBoxNode).type('[Enter]')
+
+causes a click (which causes a toggle), then an Enter which toggles again, which is not the desired result.
+Is there any particular reason type includes a click? Can the users be asked to click themselves if they need focus before type?
+type: function (text, success) { 
+            this._addExists(); 
+   -------> this.click(); 
+            var selector = this.selector; 
+            if (text === '') { 
+                text = '[ctrl]a[ctrl-up]\b'; 
+            } 
+            FuncUnit.add({ 
+                method: function (success, error) { 
+                    syn('_type', this.bind[0], text, success); 
+                }, 
+                success: success, 
+                error: 'Could not type ' + text + ' into ' + this.selector, 
+                bind: this, 
+                type: 'action' 
+            }); 
+            return this; 
+        },",binodpanta,CONTRIBUTOR,2016-02-08 18:16:52+00:00,True,2016-09-20 17:32:13+00:00,224.97,,3,13,2016-02-08 20:23:54+00:00,0.09,justinbmeyer,MEMBER,1,2,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+137,Typing at the start of input inside an Iframe causes cursor to reset to end,"When i try to type into a text input that already has text in it while the cursor is positioned at the start it resets it to the end of the input.
+I have already located a fix for this, it seems it's using the document var instead of the h.getWindow(el) helper function.
+var h = syn.helpers, getSelection = function (el) {
+    var real, r, start;
+    if (el.selectionStart !== undefined) {
+        if (document.activeElement && document.activeElement !== el && el.selectionStart === el.selectionEnd && el.selectionStart === 0) {
+            return {
+Should be
+var h = syn.helpers, getSelection = function (el) {
+    var real, r, start;
+    if (el.selectionStart !== undefined) {
+        if (h.getWindow(el).document.activeElement && h.getWindow(el).document.activeElement !== el && el.selectionStart === el.selectionEnd && el.selectionStart === 0) {
+            return {",MrL0co,NONE,2016-02-10 12:28:51+00:00,False,,,,3,0,,,,,0,0,0,0,"['bug', 'help wanted', 'p2']",False,False,False,False,False,False,False,False,False,False,True,False,True,False,True
+138,Chained .find()'s don't work with iframes,"I attempted to do:
+F('.session-menu', 0)
+        .visible('Session menu is visible')
+        .find('.dropdown-toggle')
+            .visible('Dropdown toggle is visible')
+
+I wound up doing:
+F('.session-menu', 0)
+    .visible('Session menu is visible')
+
+F('.dropdown-toggle', 0)
+    .visible('Dropdown toggle is visible')",akagomez,CONTRIBUTOR,2016-02-24 17:20:13+00:00,False,,,,2,0,,,,,0,0,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+139,Dynamic iframes are considered not loaded,"If I create an <iframe>, populate it dynamically, and set it as the context for FuncUnit like this:
+var iframe = $(document.createElement('iframe'));
+iframe.contents().find('body').append(frag);    
+F.open(win);
+
+All tests will fail because FuncUnit.documentLoaded() will return false here: 
+  
+    
+      funcunit/browser/getters.js
+    
+    
+         Line 509
+      in
+      01f767b
+    
+    
+    
+    
+
+        
+          
+           passed = false; 
+        
+    
+  
+
+
+Due to the fact that FuncUnit.win.location.href === 'about:blank' here: 
+  
+    
+      funcunit/browser/open.js
+    
+    
+        Lines 258 to 260
+      in
+      92fd4b2
+    
+    
+    
+    
+
+        
+          
+           var loaded = FuncUnit.win.document.readyState === ""complete"" &&  
+        
+
+        
+          
+                    FuncUnit.win.location.href != ""about:blank"" && 
+        
+
+        
+          
+                    FuncUnit.win.document.body; 
+        
+    
+  
+
+
+To get around this I had to overwrite FuncUnit.documentLoaded to always return true like this:
+F.documentLoaded = function () { return true; };",akagomez,CONTRIBUTOR,2016-02-24 20:25:51+00:00,False,,,,3,1,2016-08-11 18:00:05+00:00,168.9,matthewp,CONTRIBUTOR,0,1,0,0,"['bug', 'help wanted', 'p2']",False,False,False,False,False,False,False,False,False,False,True,False,True,False,True
+140,.exists() isn't counted as an assertion unless a message is defined,"F('selection').exists(); // Expected at least one assertion...
+
+F('selection').exists('Selection exists'); // 1 assertions of 1 passed, 0 failed.
+
+I think the same is true for .missing(), though I can't confirm at the moment.",akagomez,CONTRIBUTOR,2016-02-26 20:50:38+00:00,True,2016-02-26 21:08:23+00:00,0.01,,2,4,2016-02-26 20:53:49+00:00,0.0,matthewp,CONTRIBUTOR,0,2,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+141,F.open(windowRef) is not documented,https://github.com/donejs/bitballs/blob/disappearing-top-menu-44/public/test/utils.js#L25,akagomez,CONTRIBUTOR,2016-02-26 20:51:31+00:00,False,,,,3,0,,,,,0,0,0,0,"['documentation', 'help wanted', 'p3']",True,False,False,False,True,False,False,False,False,False,True,False,False,False,False
+142,"F(selector, frameId) isn't documented",https://github.com/bitovi/funcunit/blob/gh-pages/examples/todo_qunit.js#L2-L6,akagomez,CONTRIBUTOR,2016-02-26 20:53:25+00:00,False,,,,3,1,2016-10-31 20:19:23+00:00,247.98,mickmcgrath13,CONTRIBUTOR,0,1,0,0,"['documentation', 'help wanted', 'p3']",True,False,False,False,True,False,False,False,False,False,True,False,False,False,False
+145,Tests fail in Travis only,"I don't have many details. The problem was intermittent originally and I haven't been able to reproduce since I originally worked around the issue here: donejs/bitballs#115.
+At its core, setting fixture.delay in one test seemed to indirectly cause failures in other tests.
+I'll follow up with more details as I'm able to identify them. For now this issue serves as a placeholder.",akagomez,CONTRIBUTOR,2016-03-10 14:08:08+00:00,True,2016-10-31 17:16:50+00:00,235.13,,3,3,2016-08-11 17:57:55+00:00,154.16,matthewp,CONTRIBUTOR,0,3,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+155,Qunit2 support?,"Looks like there is no version of Funcunit yet that support QUnit2? Is there a plan to release FuncUnit for qunit2, if so, what is the timeline on it?",binodpanta,CONTRIBUTOR,2016-08-04 13:38:12+00:00,False,,,,8,20,2016-08-09 15:49:12+00:00,5.09,binodpanta,CONTRIBUTOR,1,4,0,2,"['bug', 'help wanted', 'p2']",False,False,False,False,False,False,False,False,False,False,True,False,True,False,True
+156,F.open() doesn't throw when violating same-origin,"You can't, for example, load google.com from localhost. This fails, but does so silently.
+We do catch the error in a try/catch here. We could improve this by checking the error in the catch and if it is a SecurityError, rethrow so the user can see the error.
+Chrome and Firefox give a different error message, so detecting this might be tricky.",matthewp,CONTRIBUTOR,2016-08-11 17:56:56+00:00,False,,,,2,0,,,,,0,0,0,0,"['bug', 'help wanted', 'p3']",False,False,False,False,True,False,False,False,False,False,True,False,True,False,False
+158,perform a test during a mousedown event,"I want to write a test when the mousedown event is triggered. A class is add during the mousedown and removed at the mouseup event. At the moment it is only possible to perform a "".click()"" which triggers a mousedown and also a mouseup event so I can not test if the class is added between the mousedown and the mouseup event.",swipie,NONE,2016-10-14 06:47:06+00:00,False,,,,2,0,,,,,0,0,0,0,['p2'],False,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+159,Get CanJS-like release script working,"include dist
+make sure travis is working
+get rid of grunt and bower
+make sure dist is exporting FuncUnit",justinbmeyer,MEMBER,2016-10-24 14:56:59+00:00,True,2016-10-26 14:32:54+00:00,1.98,,2,0,,,,,0,0,0,0,"['enhancement', 'p1']",False,True,True,False,False,False,False,False,False,False,False,False,False,False,False
+161,Write a contributing guide,A single page with some of the information in the contributing section of: http://canjs.github.io/canjs/doc/guides.html,justinbmeyer,MEMBER,2016-10-25 15:37:50+00:00,True,2016-10-28 17:30:40+00:00,3.08,,2,0,,,,,0,0,0,0,['p1'],False,False,True,False,False,False,False,False,False,False,False,False,False,False,False
+162,Get documentation working,"Use documentjs (not bit-docs for now)
+Use canjs style makefile for getting docs over to gh-pages",mickmcgrath13,CONTRIBUTOR,2016-10-25 15:52:36+00:00,True,2016-10-28 13:29:10+00:00,2.9,,1,0,,,,,0,0,0,0,['p1'],False,False,True,False,False,False,False,False,False,False,False,False,False,False,False
+164,Update examples to use NPM/Steal,"The pages in sites/examples/ are currently pointing to files in sites/examples/resources via <script> tags.  These should be updated to use NPM/Steal.
+The same should also be done for any references to files in the following directories
+
+site/app/lib/
+site/examples/todo/js/
+site/examples/todo/bower_components/",mickmcgrath13,CONTRIBUTOR,2016-10-27 19:36:21+00:00,False,,,,1,0,,,,,0,0,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+170,Mixed content errors on docs site when loading over https,"It's trying to get:
+http://ghbtns.com/github-btn.html?user=bitovi&repo=funcunit&type=watch&count=true
+http://ghbtns.com/github-btn.html?user=bitovi&repo=funcunit&type=fork&count=true
+and
+http://api.bithub.com/api/events/summary?origin_date=2013-10-31%3A",mickmcgrath13,CONTRIBUTOR,2016-10-31 17:10:44+00:00,True,2016-11-02 22:01:45+00:00,2.2,,1,0,,,,,0,0,0,0,"['bug', 'documentation', 'p1', 'website']",True,False,True,True,False,False,False,False,False,False,False,False,True,False,False
+171,Update travis.yml firefox version,set firefox version to something around 48,mickmcgrath13,CONTRIBUTOR,2016-10-31 17:44:16+00:00,False,,,,1,0,,,,,0,0,0,0,['p3'],False,False,False,False,True,False,False,False,False,False,False,False,False,False,False
+173,Use continuous deployment with travis,#168,mickmcgrath13,CONTRIBUTOR,2016-11-01 16:55:36+00:00,False,,,,1,0,,,,,0,0,0,0,"['p4', 'website']",False,False,False,True,False,False,False,False,True,False,False,False,False,False,False
+181,FuncUnit.com audit,"Go through the website and look for broken demos & links, missing images & videos, spelling & grammar issues, accessibility issues, poor performance, etc.",chasenlehara,MEMBER,2016-11-15 23:55:32+00:00,False,,,v2.1,1,0,,,,,0,0,0,0,"['developer relations', 'p3']",False,False,False,False,True,False,False,False,False,False,False,False,False,True,False
+182,Add blur action for testing blur events.,"If in a component's event we listen to a blur even like this:
+Component.extend({
+        tag : 'my-component',
+        viewModel : myVM,
+        events : {
+            '.my-message blur': function (element) {
+                this.viewModel.doSmth();
+            }
+        }
+it would be nice to be able to:
+F('.my-message').blur( function() {
+       // ...
+});",ilyavf,NONE,2016-12-21 21:30:48+00:00,False,,,,3,1,2016-12-22 04:04:11+00:00,0.27,justinbmeyer,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+186,[ctrl/alt/cmd/shift]-click support,"We would like to have special-key click support to test a multi-select table.
+I've tried setting syn's ctrlKey to true and then perform a click, but it doesn't work.
+syn.key.ctrlKey = true;
+F('.table__row:even').click();",jeroencornelissen,NONE,2017-02-07 08:10:07+00:00,True,2017-04-19 15:31:08+00:00,71.31,,3,2,2017-02-07 12:54:25+00:00,0.2,matthewp,CONTRIBUTOR,0,2,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+187,Do not set window.jQuery,"The jquery imported calls noConflict which cleans up global $ and jQuery. This file then puts the old version of jQuery back on window.jQuery
+So if you are using jquery plugins that pass window.jQuery into an IIFE you will be using the FuncUnit version of jQuery in the plugin but a newer version in Can (and your tests)
+Proposed solution – Remove this line:
+https://github.com/bitovi/funcunit/blob/master/browser/init.js#L4
+window.jQuery = jQuery;",mickmcgrath13,CONTRIBUTOR,2017-02-13 16:23:58+00:00,True,2017-04-10 19:15:00+00:00,56.12,,4,2,2017-02-13 16:32:49+00:00,0.01,matthewp,CONTRIBUTOR,0,1,0,1,"['bug', 'p1']",False,False,True,False,False,False,False,False,False,False,False,False,True,False,False
+188,Document how to test mouseover,It’d be helpful to have docs on how to write a “test for something with a mouseover”: https://gitter.im/bitovi/funcunit?at=58ac5d55872fc8ce626577cf,chasenlehara,MEMBER,2017-02-21 17:14:52+00:00,False,,,,2,0,,,,,0,0,0,0,"['documentation', 'help wanted']",True,False,False,False,False,False,False,False,False,False,True,False,False,False,False
+190,Update Syn,Update Syn to include the fix for bitovi/syn#122,chasenlehara,MEMBER,2017-02-23 01:23:06+00:00,True,2017-02-24 18:01:44+00:00,1.69,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+192,Automatically update the version number on the home page,"When a new version of FuncUnit is released and the website is updated, the home page should have the updated version number.
+Related to #180",chasenlehara,MEMBER,2017-03-01 22:06:35+00:00,True,2017-04-04 19:14:00+00:00,33.88,,2,0,,,,,0,0,0,0,"['developer relations', 'enhancement', 'help wanted', 'p1', 'website']",False,True,True,True,False,False,False,False,False,False,True,False,False,True,False
+196,Improve the FuncUnit.com build,"You can run make to build & deploy the FuncUnit site, but the way it works seems like a hack:
+
+The site folder has its own Makefile and package.json, which seems odd
+At least one file is force-added unnecessarily (that whole script could probably use some attention/verification)
+Static resources are loaded from different folders, depending on which main section you’re on (i.e. the home page loads resources from site/static, while the Guides page loads from guides/static)
+
+Home page:
+
+Guides page:",chasenlehara,MEMBER,2017-04-06 23:30:40+00:00,False,,,,2,3,2017-05-12 16:28:15+00:00,35.71,chasenlehara,MEMBER,1,0,0,0,"['cleanup', 'developer relations', 'help wanted', 'p2', 'website']",False,False,False,True,False,False,False,True,False,False,True,False,False,True,True
+198,point to global.js in build but not in package.json,"this: https://github.com/bitovi/funcunit/blob/master/package.json#L67
+should be:
+""main"": ""funcunit"",
+
+..and then add
+system: {
+ main: ""global""
+}
+
+to outputs.global in https://github.com/bitovi/funcunit/blob/master/build.js",mickmcgrath13,CONTRIBUTOR,2017-04-11 18:03:10+00:00,True,2017-04-11 22:05:27+00:00,0.17,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+200,System.import funcunit somehow stops qunit's beforeEach hook to run,"This test fails:
+import QUnit from 'steal-qunit';
+
+System.import('funcunit').then(function (F) {
+	// F.attach(QUnit);
+	let beforeEachHasRun = false;
+
+	QUnit.module('[Functional] System.import funcunit', {
+		beforeEach(assert) {
+			beforeEachHasRun = true;
+		},
+		afterEach() {
+			beforeEachHasRun = false;
+		}
+	});
+
+	QUnit.test('before each ran for this test', function (assert) {
+		assert.ok(beforeEachHasRun);
+	});
+	QUnit.test('before each ran for this test, too', function (assert) {
+		assert.ok(beforeEachHasRun); //this fails
+	});
+});
+..notice that the F.attach(QUnit) is commented out...",mickmcgrath13,CONTRIBUTOR,2017-04-12 21:58:11+00:00,False,,,,2,11,2017-04-12 22:03:26+00:00,0.0,mickmcgrath13,CONTRIBUTOR,0,2,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+201,Provide a range of jQuery versions,"We should provide a range of jQuery versions for our jQuery dependency so that it is more likely that FuncUnit can utilize the app's version.
+Something like:
+""dependencies"": {
+  ""jquery"": "">=1.9.0 <1.12.0 || >=2.1.0 <2.3.0""
+},",mickmcgrath13,CONTRIBUTOR,2017-04-17 16:55:17+00:00,False,,,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+206,Throws error when using the click method on the document,"If you use .click like this f.click(document), it throws the following error.
+syn.js:173 Uncaught TypeError: Cannot read property 'jQuery' of undefined
+    at Function.jquery (https://unpkg.com/syn@0.5.0/dist/global/syn.js:173:49)
+    at Object.addOffset (https://unpkg.com/syn@0.5.0/dist/global/syn.js:326:30)
+    at init._click (https://unpkg.com/syn@0.5.0/dist/global/syn.js:515:25)
+    at new init (https://unpkg.com/syn@0.5.0/dist/global/syn.js:155:27)
+    at syn (https://unpkg.com/syn@0.5.0/dist/global/syn.js:131:20)
+    at Function.syn.(anonymous function) [as click] (https://unpkg.com/syn@0.5.0/dist/global/syn.js:578:24)
+    at HTMLDocument.<anonymous> (https://fiddle.jshell.net/0xxjv2o0/1/show/:49:5)
+    at fire (https://code.jquery.com/jquery-2.1.3.js:3094:30)
+    at Object.fireWith [as resolveWith] (https://code.jquery.com/jquery-2.1.3.js:3206:7)
+    at Function.ready (https://code.jquery.com/jquery-2.1.3.js:3412:13)
+
+JSfiddle",imaustink,CONTRIBUTOR,2017-05-09 02:49:48+00:00,True,2017-05-12 00:36:30+00:00,2.91,,3,3,2017-05-09 16:39:25+00:00,0.58,chasenlehara,MEMBER,2,1,0,0,"['bug', 'help wanted', 'p1']",False,False,True,False,False,False,False,False,False,False,True,False,True,False,False
+207,Set up SauceLabs for browser testing,"We ran into an issue where Funcunit was throwing an error on Chrome 58 on Windows 10: canjs/canjs#3235. We should set up SauceLabs testing for funcunit so we can catch these issues earlier.
+Setting up SauceLabs is relatively easy using the test-saucelabs package like we are using in canjs here: https://github.com/canjs/canjs/blob/master/test/test-sauce-labs.js.",phillipskevin,CONTRIBUTOR,2017-05-11 15:18:28+00:00,False,,,,3,3,2017-05-30 22:46:26+00:00,19.31,morrme,NONE,0,1,0,1,"['developer relations', 'help wanted']",False,False,False,False,False,False,False,False,False,False,True,False,False,True,False
+208,Add a Press Kit page,It should be the last page under Guides.,chasenlehara,MEMBER,2017-06-27 14:04:12+00:00,False,,,,2,0,,,,,0,0,0,0,"['design', 'developer relations']",False,False,False,False,False,False,True,False,False,False,False,False,False,True,False
+210,CI Failing,"Travis fails for just about anything with an issue related to node-gyp.
+Tests pass locally on OS X for funcunit@0.4.0.
+This does not appear to be a Node 8 issue as the tests pass locally with Node 8 and Node 6. This should be confirmed by locking down the Node version. Currently, Travis runs Node 8 by default.",andrejewski,CONTRIBUTOR,2017-06-28 14:25:50+00:00,True,2017-06-28 16:11:36+00:00,0.07,,1,1,2017-06-28 16:11:36+00:00,0.07,andrejewski,CONTRIBUTOR,0,1,0,0,['p0'],False,False,False,False,False,False,False,False,False,True,False,False,False,False,False
+211,Function.caller does not work strict mode,The QUnit2 change takes advantage of Function.caller which breaks people who are using 'strict mode';. We should look for alternatives or workarounds.,andrejewski,CONTRIBUTOR,2017-06-28 15:47:15+00:00,True,2017-06-28 18:39:03+00:00,0.12,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+213,Test against Node 8,"Currently, FuncUnit CI tests will run using Node 7. We should support Node 8.",andrejewski,CONTRIBUTOR,2017-06-28 16:11:11+00:00,True,2018-06-22 23:43:15+00:00,359.31,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+215,Set up Google Analytics,,chasenlehara,MEMBER,2017-07-18 23:36:15+00:00,True,2017-07-20 15:47:06+00:00,1.67,,1,0,,,,,0,0,0,0,"['developer relations', 'website']",False,False,False,True,False,False,False,False,False,False,False,False,False,True,False
+218,how can i install funcit from github?,"In a separate post, i found the link of funcit
+https://github.com/jupiterjs/funcit
+How can i install(or use) it after downloading the project from github?",debajyoti3061,NONE,2017-07-25 19:07:58+00:00,True,2017-07-25 20:44:38+00:00,0.07,,2,1,2017-07-25 20:44:38+00:00,0.07,chasenlehara,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+219,Advertise the community survey on funcunit.com,,chasenlehara,MEMBER,2017-09-11 22:14:16+00:00,True,2017-09-18 01:44:57+00:00,6.15,,1,1,2017-09-18 01:44:57+00:00,6.15,chasenlehara,MEMBER,1,0,0,0,['developer relations'],False,False,False,False,False,False,False,False,False,False,False,False,False,True,False
+220,dist folder not included on npm,I just tried republishing but it didn’t include the dist folder. Nothing obvious sticks out to me as to why it’s not being published.,chasenlehara,MEMBER,2017-10-16 18:52:44+00:00,True,2017-10-24 15:51:39+00:00,7.87,,2,4,2017-10-23 23:03:44+00:00,7.17,mckenna,CONTRIBUTOR,1,1,0,0,"['help wanted', 'p1']",False,False,True,False,False,False,False,False,False,False,True,False,False,False,False
+223,Failure while using F.attach(Qunit),"The code below is taken from the QUnit homepage with just 1 addition of funcunit.js
+The failure point is F.attach(QUnit). The error is
+ReferenceError: arugments is not defined
+at Object. (https://rawgit.com/bitovi/funcunit/v3.4.2/dist/funcunit.js:8874:41)
+I am looking for a workaround for this as this biting me at many other places.
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=""utf-8"">
+  <meta name=""viewport"" content=""width=device-width"">
+  <title>QUnit Example</title>
+  <link rel=""stylesheet"" href=""https://code.jquery.com/qunit/qunit-2.6.1.css"">
+</head>
+<body>
+  <div id=""qunit""></div>
+  <div id=""qunit-fixture""></div>
+  <script src=""https://code.jquery.com/qunit/qunit-2.6.1.js""></script>
+  <script type=""text/javascript"" src=""https://rawgit.com/bitovi/funcunit/v3.4.2/dist/funcunit.js""></script>
+
+  <script type=""text/javascript"">
+    F.attach(QUnit);
+    QUnit.test( ""hello test"", function( assert ) {
+      assert.ok( 1 == ""1"", ""Passed!"" );
+    });
+  </script>
+</body>
+</html>",mgarg1,NONE,2018-05-18 09:08:47+00:00,True,2018-06-25 14:29:07+00:00,38.22,,2,2,2018-05-18 15:57:32+00:00,0.28,chasenlehara,MEMBER,1,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+224,FuncUnit + iframe: click() on link (<a>) tage produces false positive. ,"I am implementing a test where the PageUnderTest(PUT) will open and contains iframe in it which loads content dynamically with javascript. I was able to move into the iframe content, get ids and link tags. When I use click() on one of the links, code execution moves into success call back, but the page stays as is on the landing page. Sample code below
+F('iframe').contents().find(""#nav_toggle button"").exists(""button exist"").click(20000,function() {
+	  		console.log(""ok"")
+},""was able to click the button"");
+
+Tried:
+F('iframe',0).contents()...
+F('#iframe_id').contents()...
+and without chaining.
+Another code sample:
+F('iframe').contents().find(""a[href='index.html']:first"").click(20000,function() {
+	    		alert('ok')
+	});
+
+Bug? Any help is appreciated.
+FuncUnit version - 3.3  along with Qunit 1.17.1
+Browser - Chrome - 67.0.3396.79
+Computer - iMac with 10.10.3 Yosemite",pawanpe,NONE,2018-06-08 20:40:05+00:00,True,2018-06-13 20:12:56+00:00,4.98,,1,1,2018-06-13 20:12:56+00:00,4.98,pawanpe,NONE,0,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+228,Remove the dependency on jquery,"I did a spike on seeing if we could remove jquery as a dependency: https://github.com/bitovi/funcunit/tree/no-jq
+It didn't quite succeed. Some of the issues I ran into:
+
+There are uses of .val() and .text(), etc. that we'd have to write our
+own versions of.
+There are jqueryisms in the test and some dependencies on jquery-only
+selectors.",matthewp,CONTRIBUTOR,2018-11-01 16:23:01+00:00,False,,,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+229,Make FuncUnit use async/await rather than a queue system,This is a future proposal that needs to be more fully thoroughly thought out.,matthewp,CONTRIBUTOR,2018-11-01 16:23:51+00:00,False,,,,2,1,2018-11-01 16:40:11+00:00,0.01,justinbmeyer,MEMBER,1,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+232,dist folder not included on npm,"Dist folder is not included in latest version on npm.
+Looks like same issue as #220
+I recommend setting up prepublish script hook.",danielhusar,NONE,2019-01-09 17:59:40+00:00,True,2019-01-25 16:08:36+00:00,15.92,,3,1,2019-01-15 19:29:13+00:00,6.06,cherifGsoul,CONTRIBUTOR,0,1,0,0,"['p1', 'regression']",False,False,True,False,False,False,False,False,False,False,False,True,False,False,False
+234,Can't do async operations in QUnit2 before/after hooks,"The current implementation of the qunit2 adaptor wraps up the QUnit.test method to cache away the assert object so that it can call it's ""async"" method. This needs to be generalized to allow such operations in all test context scopes, particularly in the before/beforeEach/after/afterEach module hooks; for example:
+    F.attach(QUnit);
+    QUnit.module(""my mod"", {
+        before: () => {
+            F.wait(1, ()=>{});
+        }
+    });
+    QUnit.test(""hello world"", (assert) => {
+        assert.ok(1); // trivial test
+    });
+
+Will throw the following:
+TypeError: Cannot read property 'async' of undefined
+I've tried out the following workaround in the qunit2 adapter (getting the current assert on-demand without caching), and it seems to work well:
+    module.exports = function (runner) {
+        var done;
+        var getCurrentAssert = function () {
+            if (runner.config.current) {
+                return runner.config.current.assert;
+            }
+            throw new Error(""Outside of test context"");
+        }
+        return {
+            pauseTest: function () {
+                done = getCurrentAssert().async();
+            },
+            resumeTest: function () {
+                done();
+            },
+            assertOK: function (assertion, message) {
+                getCurrentAssert().ok(assertion, message);
+            },
+            equiv: function (expected, actual) {
+                return runner.equiv(expected, actual);
+            }
+        };
+    };
+
+One gotcha that I'm not sure about is if we need a simple ""done"" variable, or if that should be a stack to push/pop.",smcclure15,NONE,2019-02-08 15:51:23+00:00,False,,,,1,0,,,,,0,0,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+236,jQuery is not defined,"Upon funcunit import, we get... ""
+VM180:9958 Uncaught ReferenceError: jQuery is not defined
+at :9958:21
+at global.define (:73:36)
+at :9955:1
+(anonymous) @ VM180:9958
+global.define @ VM180:73
+(anonymous) @ VM180:9955
+""
+This could be a regression of #187 (similar syndrome), but I think jQuery is undefined prior to the failure moment described in 187.
+Chasen suspects it might be related to changeset: #230
+... and I think he's on to something.",kdillon,CONTRIBUTOR,2019-03-14 18:35:56+00:00,False,,,,3,4,2019-03-14 18:54:46+00:00,0.01,chasenlehara,MEMBER,1,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+238,Lint all the files,"Right now only files in the browser/adapters/ folder are being linted: 
+  
+    
+      funcunit/package.json
+    
+    
+         Line 34
+      in
+      c29154f
+    
+    
+    
+    
+
+        
+          
+           ""lint"": ""eslint browser/adapters/*.js *.js"", 
+        
+    
+  
+
+
+That glob should be expanded to something like: *.js browser/*.js browser/**/*.js
+There are a bunch of linting errors in the browser/*.js files, so those will need to be fixed.",chasenlehara,MEMBER,2019-04-10 19:18:29+00:00,False,,,,1,0,,,,,0,0,0,0,"['cleanup', 'help wanted']",False,False,False,False,False,False,False,True,False,False,True,False,False,False,False
+242,You can't run getters after actions and waits. Please put your getters in a callback or at the beginning of the test.,"I am testing funcunit against facebook wall, I include funcunit :
+Now when i run
+$(document).ready(function() 
+{
+F(""#js_g > div > div > div"").visible(function(){
+console.log('found');
+})
+});
+
+i got this console error :
+You can't run getters after actions and waits. Please put your getters in a callback or at the beginning of the test.
+please advice",beshoo,NONE,2019-04-24 00:57:40+00:00,True,2019-04-24 15:39:35+00:00,0.61,,2,2,2019-04-24 15:39:35+00:00,0.61,chasenlehara,MEMBER,1,0,0,1,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+246,invalid usage of delete operator,"There is usage of the delete operator in the method add (browser/queue.js). This construction is not valid in the strict mode so it leads to fail when FuncUnit is imported as a ES6 module.
+add = function(handler, error, context) {
+  if(handler instanceof Function) {
+    if(typeof error === 'object') {
+      context = error;
+      delete error;
+    }
+
+    error = (error && error.toString()) || 'Custom method has failed.';
+Found in the npm version 3.7.0",koalixCZ,NONE,2019-05-29 04:20:32+00:00,False,,,,3,1,2019-05-29 10:22:22+00:00,0.25,matthewp,CONTRIBUTOR,0,1,0,0,"['bug', 'help wanted', 'p2']",False,False,False,False,False,False,False,False,False,False,True,False,True,False,True
+247,"funcunit.com is down with 502 ""Bad Gateway""",,smcclure15,NONE,2019-07-02 13:47:48+00:00,True,2019-07-02 17:14:38+00:00,0.14,,3,2,2019-07-02 14:07:48+00:00,0.01,matthewp,CONTRIBUTOR,1,1,0,0,[],False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
