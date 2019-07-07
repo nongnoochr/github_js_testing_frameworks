@@ -139,6 +139,23 @@ def process_texts(issue_text, custom_stopwords=None):
     
     return list_joined_text
 
+def generate_wordcloud(list_joined_text):
+    '''
+    '''
+
+    final_joined_text = ' '.join(list_joined_text)
+
+    # Generate a word cloud image
+    wordcloud = WordCloud().generate(final_joined_text)
+
+    # Display the generated image:
+    # the matplotlib way:
+    # import matplotlib.pyplot as plt
+    plt.figure( figsize=(12,8) )
+    plt.imshow(wordcloud, interpolation='bilinear');
+    plt.axis("off");
+
+
 # --- For internal use
 
 def get_wordnet_pos(tag):
